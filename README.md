@@ -1,11 +1,11 @@
 # Distribution-System-Network-Planning
 Introduction:
 This project involves planning and costing a section of the distribution network in Tampere city using futuristic load and DG data. The goal is to sensibly plan the network feeding from two primary substations. The network includes two primary and 16 secondary substations in the region between them. Each substation has a mix of consumption and generation based on measured data from renewable DG-rich Germany and an anticipated increase in demand due to electric vehicle charging and general electrification. The load growth is expected to nearly double over the next 20 years. The topology consists of two radial spurs fed from one primary station to ensure a simple topology that can handle single faults. During normal operation, the switches of the back-up cable in the middle are open. see the code.
-# Topology and Equipment Definition
+## Topology and Equipment Definition
 The first step in the simulation was to define the topology and equipment of the network. This was done defining and using the Busses(), Loads(), Line(), and rest() functions. The Busse function accepts the geolocation and nominal voltage of the buses. Line function accept the two buses that are going to connect them, length of the line and characteristics such as resistance and reactance.   The Load function accepts a variable as an input, either "Now" or "20years," to implement loads currently or loads in 20 years and the bus number which the loads are connected to. And transformers are defined by the rest function. Important thing here is that all the parameters are addressed in the excel file which the simulation is reading from, so for changing the specifications the excel file should be changed. 
-# Operation Topology Definition
+## Operation Topology Definition
 After defining the topology and equipment, the operation topology needed to be defined. This function can be Normal, Contingency_P04 (feeding from P04), or Contingency_P05 (feeding from P05). The switches' state changes to reach the desired operating condition. For example, in our case, the switch between two buses in the middle is open in normal conditions. This was done using the Operation_Topology function. The Operation_Topology_presentation function was used to present the operation topology on the map. Figures 7,8,9  shows the different topologies of the network.
-# Power Flow Calculation
+## Power Flow Calculation
 After defining the topology and equipment and the operation topology,  Power flow is calculated based on the loads and operation topology using the Powerflow_calculation() function. The results can be presented on the map using the Powerflow_presentation(table=False,map=True) function. Table in the code shows the results for different conditions and the deviation from the calculated values. 
-# Shortcircuit Calculation
+## Shortcircuit Calculation
 The short circuit simulation is implemented in SC_calculation() function and results are depicted in the code. 
